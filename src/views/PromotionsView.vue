@@ -126,6 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 .row-filters {
+  height: 50px;
   margin-bottom: 45px;
   display: flex;
   gap: 20px;
