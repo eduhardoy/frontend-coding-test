@@ -7,7 +7,7 @@
     </p>
     <p>La app consta de dos vistas principales:
       <ul>
-        <li><router-link to="promotions">Promotions</router-link>: vista del listado de promociones. En esta vista se pueden visualizar, filtrar y ordenar las promociones. Cada promoción es reprenstada graficamente con una card que ofrece un resumen de todos sus atributos.
+        <li><router-link to="promotions">Promotions</router-link>: vista del listado de promociones. En esta vista se pueden visualizar, filtrar y ordenar las promociones. Cada promoción es reprenstada graficamente con una card que ofrece un resumen de todos sus datos.
         </li>
         <li><router-link to="promotions-create">PromotionsCreate</router-link>: vista para la creación de promociones. Una vez creada una nueva promoción estará disponible en el listado de promociones.</li>
       </ul>
@@ -23,9 +23,9 @@
         <b>1.1</b> Terminar la maquetación y aplicar estilos como indicado en el
         <a href="https://www.figma.com/file/urHSqbqpOx7yLZWjGs3Oew/Test-Promociones?node-id=0%3A1"
           target="_blank"
-          >diseño figma</a>. En el diseño encontrarás la versión para mobile y para desktop. El layout tendría que ser responsive basado en media queries de css. Para visualizar todos los detalles del diseño es necesario tener una cuenta free en el Figma.
+          >diseño figma</a>. En el diseño encontrarás la versión para mobile y para desktop. El layout tendría que ser responsive basado en media queries de css. Para visualizar todos los detalles del diseño es necesario tener una cuenta free del Figma.
       </li>
-      <li><b>1.2</b> Implementar las funcionalidades para: filtrar, ordenar y paginar las promociones.</li>
+      <li><b>1.2</b> Implementar las funcionalidades de: filtrar, ordenar y paginar las promociones.</li>
     </ul>
     <h3>2. Tareas de PromotionCreate</h3>
       <ul>
@@ -71,7 +71,7 @@
     </ul>
     <h3>4. Entrega</h3>
     <p>
-      Para entregar la prueba puedes subir el proyecto a un repositorio GIT y enviarnos la url o puedes crear un .zip (borrando la carpeta node_modules) y enviarlo por email.
+      Para entregar la prueba puedes subir el proyecto a un repositorio GIT y enviarnos la url o puedes crear un .zip (borrando la carpeta node_modules) y enviarlo por email/wetransfer.
     </p>
   </div>
 </template>
