@@ -25,7 +25,7 @@
           target="_blank"
           >diseño figma</a>. En el diseño encontrarás la versión para mobile y para desktop. El layout tendría que ser responsive basado en media queries de css. Para visualizar todos los detalles del diseño es necesario tener una cuenta free del Figma.
       </li>
-      <li><b>1.2</b> Implementar las funcionalidades de: filtrar, ordenar y paginar promociones. Utilizar una solución basada en Vue.js donde se manipule el array de promociones.</li>
+      <li><b>1.2</b> Implementar las funcionalidades de: filtrar, ordenar y paginar las promociones. Utilizar una solución basada en front donde se trabaje con el array de promociones.</li>
     </ul>
     <h3>2. Tareas de PromotionCreate</h3>
       <ul>
