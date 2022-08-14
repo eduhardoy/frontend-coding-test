@@ -10,7 +10,7 @@
 @import '@/scss/design_token.scss';
 .app-container{
   background: $background;
-  padding: 50px 0;
+  padding: 60px 87px;
   min-height: 100vh;
 }
 .app-column{
@@ -18,7 +18,6 @@
   background: #fff;
   padding: 60px;
   margin: 0px auto;
-  border-radius: 5px;
 }
 @media only screen and (max-width: 1200px) {
   .app-column{

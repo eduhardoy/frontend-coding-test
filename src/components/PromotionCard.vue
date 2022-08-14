@@ -1,13 +1,17 @@
 <template>
   <div class="card">
-    <img class="product-image" :src="promotion.product.image" />
-    <img :src="dicountImgSrc"/>
-    <h3>{{promotion.product.name}}</h3>
-    <div>{{promotion.product.description}}</div>
-    <div>Valoración: {{promotion.rating}}</div>
-    <img :src="fullStar"/>
-    <img :src="emptyStar"/>
-    <div>Vigencia: {{promotion.date_end}} | {{promotion.date_init}}</div>
+    <div class="card-images-container">
+      <img class="product-image" :src="promotion.product.image" />
+      <img class="discount-image" :src="dicountImgSrc"/>
+    </div>
+    <div class="card-info-container">
+      <h3>{{promotion.product.name}}</h3>
+      <div>{{promotion.product.description}}</div>
+      <div>Valoración: {{promotion.rating}}</div>
+        <img :src="fullStar"/>
+        <img :src="emptyStar"/>
+      <div>Vigencia: {{promotion.date_end}} | {{promotion.date_init}}</div>
+    </div>
   </div>
 </template>
 
@@ -44,11 +48,32 @@ export default {
 
 <style lang="scss" scoped>
 .card{
-  border: 1px solid #444;
+  border-radius: 6px;
   margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 360px;
 }
+
+.card-images-container{
+  background-color: #fafafa;
+  border: 0.5px solid #E2E2E2;
+  border-radius: 6px 6px 0 0;
+  height: 300px;
+  position: relative;
+}
+
 .product-image{
-  width: 200px;
+  width: 100%;
+  margin-top: 36px;
+}
+
+.discount-image{
+  position: absolute;
+  left: 22px;
+  top: 29px;
+}
+
+.card-info-container{
+  border: 1px solid rgba(197, 199, 205, 0.3);
+  border-radius: 0 0 6px 6px;
 }
 </style>
