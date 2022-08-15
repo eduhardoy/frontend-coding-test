@@ -19,7 +19,7 @@
       </div>
       <h3>{{promotion.product.name}}</h3>
       <div class="card-info-description">{{promotion.product.description}}</div>
-      <div class="card-info-vigencia">Vigencia: {{promotion.date_init}} | {{promotion.date_end}}  </div>
+      <div class="card-info-vigencia">Validez: {{moment(promotion.date_init).format('MM/YYYY')}} - {{moment(promotion.date_end).format('DD/MM/YYYY')}}  </div>
     </div>
   </div>
 </template>

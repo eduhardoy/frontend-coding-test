@@ -46,3 +46,28 @@
   padding-top: 4px;
   color: #3D3F49;
 }
+
+.pagination-container li a {
+  color: $medium-grey;
+  font-weight: 500;
+  font-size: 13px;
+  text-align: center;
+}
+
+.pagination-container li {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-container .active {
+  background-color: $brand-01;
+  border-radius: 100%;
+}
+
+.pagination-container .active a {
+  color: white;
+  line-height: 13px;
+}

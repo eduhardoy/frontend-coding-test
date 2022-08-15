@@ -69,22 +69,11 @@ export default {
   max-width: 100%;
 }
 
-.promotions-grid div ul .active{
-  max-width: 1000%;
-}
-
 .pagination-container{
   display: flex;
   justify-content: space-between;
   margin: 30px auto;
   width: 200px;
-  & li {
-    font-size: 80px;
-    & a{
-    font-size: 80px;
-
-    }
-  }
 }
 
 .cards-container {

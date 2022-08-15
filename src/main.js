@@ -7,6 +7,7 @@ import axios from './plugins/axios'
 import Multiselect from 'vue-multiselect'
 import VCalendar from 'v-calendar'
 import Paginate from 'vuejs-paginate'
+import moment from 'moment'
 
 // register globally
 import './scss/index.scss'
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 Vue.use(axios)
 Vue.component('MultiSelect', Multiselect)
 Vue.component('PaginateButtons', Paginate)
+Vue.prototype.moment = moment
 new Vue({
   router,
   store,
