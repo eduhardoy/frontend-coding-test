@@ -76,14 +76,14 @@ export default {
 }
 
 .pagination-container li a {
-  font-weight: 500;
-  color: $medium-grey !important;
+      font-weight: 500;
+      color: $medium-grey !important;
 }
 
 .cards-container {
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 </style>

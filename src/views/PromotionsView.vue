@@ -72,7 +72,7 @@ export default {
           }
         },
         {
-          label: 'Filtrar por valoración menor de 2 estrellas',
+          label: 'Filtrar por valoración menor de 4 estrellas',
           value: {
             field: 'rating',
             value: 4,

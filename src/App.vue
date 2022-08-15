@@ -15,8 +15,9 @@
 }
 .app-column{
   max-width: 1200px;
+  box-sizing: border-box;
   background: #fff;
-  padding: 60px;
+  padding: 60px 20px 60px 40px;
   margin: 0px auto;
 }
 @media only screen and (max-width: 1200px) {
