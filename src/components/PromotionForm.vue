@@ -12,7 +12,7 @@
       class="select"
     />
     <label>Descuento a aplicar en el producto</label>
-    <input placeholder="Ejemplo: 1.55" type="text" v-model.number="promotion.discount" />
+    <input class="form-input" placeholder="Ejemplo: 1.55" type="text" v-model.number="promotion.discount" />
     <label>Fecha de inicio de la promoción</label>
     <v-date-picker
       :masks="{ title: 'MMM YYYY' }"
@@ -25,6 +25,7 @@
     >
       <template v-slot="{ inputValue, togglePopover }">
         <input
+          class="form-input"
           :value="inputValue"
           placeholder="Ejemplo: 22/05/2022"
           readonly
@@ -44,6 +45,7 @@
     >
       <template v-slot="{ inputValue, togglePopover }">
         <input
+          class="form-input"
           placeholder="Ejemplo: 22/05/2022"
           :value="inputValue"
           readonly
@@ -91,5 +93,12 @@ form {
 }
 button[type="submit"]{
   margin-top: 30px;
+}
+.form-input{
+  border: 1px solid #d9d9d9;
+  border-radius: 0;
+  width: 360px;
+  box-sizing: border-box;
+  height: 50px;
 }
 </style>
