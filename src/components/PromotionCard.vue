@@ -59,7 +59,6 @@ export default {
 @import '@/scss/design_token.scss';
 .card{
   border-radius: 6px;
-  margin-bottom: 10px;
   max-width: 360px;
   margin-bottom: 50px;
   margin-right: 20px;
@@ -86,6 +85,7 @@ export default {
 
 .card-info-container{
   border: 1px solid rgba(197, 199, 205, 0.3);
+  border-top: none;
   border-radius: 0 0 6px 6px;
   padding: 20px 26px;
 }
@@ -114,5 +114,22 @@ export default {
   line-height: 20px;
   color: $brand-01;
   margin-top: 9px;
+}
+
+@media only screen and (max-width: 650px) {
+  .card{
+  border-radius: 6px;
+  max-width: 335px;
+  margin-bottom: 20px;
+  margin-right: 0px;
+}
+
+.card-images-container{
+  height: 280px;
+}
+
+.product-image{
+  margin-top: 33px;
+}
 }
 </style>

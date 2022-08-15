@@ -28,4 +28,9 @@
     padding: 0 0;
   }
 }
+@media only screen and (max-width: 650px) {
+  .app-column{
+    padding: 60px 20px;
+  }
+}
 </style>

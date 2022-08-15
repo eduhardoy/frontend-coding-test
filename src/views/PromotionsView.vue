@@ -134,4 +134,18 @@ export default {
     width: 400px;
   }
 }
+@media only screen and (max-width: 650px) {
+.row-filters {
+  height: auto;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  .select {
+    width: 100%;
+  }
+}
+}
 </style>
