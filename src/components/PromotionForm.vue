@@ -16,7 +16,7 @@
       <input class="form-input" placeholder="Ejemplo: 1.55" type="text" v-model.number="promotion.discount" />
       <div class="error" v-if="!$v.promotion.discount.required">Se requiere un monto de descuento</div>
       <div class="error" v-if="!$v.promotion.discount.between">El monto de descuento debe estar entre 0.05 y 99.95</div>
-      <div class="error" v-if="!$v.promotion.discount.multipleOfHalf">El monto de descuento debe ser multiplo de 0.5</div>
+      <div class="error" v-if="!$v.promotion.discount.multipleOfFiveCents">El monto de descuento debe ser multiplo de 0.05</div>
       <label>Fecha de inicio de la promoción</label>
       <v-date-picker
         :masks="{ title: 'MMM YYYY' }"
@@ -37,6 +37,7 @@
             @blur="togglePopover"
           />
           <div class="error" v-if="!$v.promotion.date_init.required">Se requiere seleccionar una fecha de inicio</div>
+          <div class="error" v-if="!$v.promotion.date_init.fifteenDaysFromNow">La fecha de inicio debe ser 15 días mayor de la fecha actual</div>
         </template>
       </v-date-picker>
       <label>Fecha de fin de la promoción</label>
@@ -58,6 +59,7 @@
             @blur="togglePopover"
           />
           <div class="error" v-if="!$v.promotion.date_init.required">Se requiere seleccionar una fecha de finalización</div>
+          <!-- <div class="error" v-if="!$v.promotion.date_init.fifteenDaysFromStart">La fecha de finalización debe ser 15 días mayor de la fecha de inicio</div> -->
         </template>
       </v-date-picker>
       <button type="submit" :disabled="submitStatus === 'PENDING'">Crear promoción</button>
@@ -70,8 +72,15 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import { required, between } from 'vuelidate/lib/validators'
+import moment from 'moment'
+
+const fifteenDaysFromNow = (date) => {
+  const day = moment(date, 'YYYY-MM-DD')
+  return day.diff(moment([]), 'days') >= 15
+}
+
 // eslint-disable-next-line eqeqeq
-const multipleOfHalf = (value) => (value % 0.05).toFixed(2) == 0 || (value % 0.05).toFixed(2) == 0.05
+const multipleOfFiveCents = (value) => (value % 0.05).toFixed(2) == 0 || (value % 0.05).toFixed(2) == 0.05
 export default {
   data () {
     return {
@@ -88,7 +97,8 @@ export default {
   validations: {
     promotion: {
       date_init: {
-        required
+        required,
+        fifteenDaysFromNow
       },
       date_end: {
         required
@@ -99,7 +109,7 @@ export default {
       discount: {
         required,
         between: between(0.05, 99.95),
-        multipleOfHalf
+        multipleOfFiveCents
       },
       rating: {
         required
