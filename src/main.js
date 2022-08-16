@@ -8,6 +8,7 @@ import Multiselect from 'vue-multiselect'
 import VCalendar from 'v-calendar'
 import Paginate from 'vuejs-paginate'
 import moment from 'moment'
+import Vuelidate from 'vuelidate'
 
 // register globally
 import './scss/index.scss'
@@ -18,6 +19,7 @@ Vue.use(axios)
 Vue.component('MultiSelect', Multiselect)
 Vue.component('PaginateButtons', Paginate)
 Vue.prototype.moment = moment
+Vue.use(Vuelidate)
 new Vue({
   router,
   store,
