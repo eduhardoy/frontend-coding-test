@@ -65,10 +65,6 @@ export default {
         return _.orderBy(array, field, value)
       }
 
-      if (this.sortValue) {
-        const sortObj = JSON.parse(JSON.stringify(this.sortValue))
-        return sortArrays(this.promotions, sortObj.value.field, sortObj.value.value).slice(start, end)
-      }
       if (this.filterValue) {
         const filterObj = JSON.parse(JSON.stringify(this.filterValue))
         const compare = (field, value, type) => {
@@ -78,19 +74,12 @@ export default {
           const fieldValue = promotion[filterObj.value.field]
           return compare(fieldValue, filterObj.value.value, filterObj.value.type)
         })
-        return filteredPromotions.slice(start, end)
-      }
-      if (this.filterValue && this.sortValue) {
-        const filterObj = JSON.parse(JSON.stringify(this.filterValue))
-        const compare = (field, value, type) => {
-          return type === '<' ? field < value : field > value
+        if (this.sortValue) {
+          const sortObj = JSON.parse(JSON.stringify(this.sortValue))
+          return sortArrays(filteredPromotions, sortObj.value.field, sortObj.value.value).slice(start, end)
+        } else {
+          return filteredPromotions.slice(start, end)
         }
-        const filteredPromotions = this.promotions.filter((promotion) => {
-          const fieldValue = promotion[filterObj.value.field]
-          return compare(fieldValue, filterObj.value.value, filterObj.value.type)
-        })
-        const sortObj = JSON.parse(JSON.stringify(this.sortValue))
-        return sortArrays(filteredPromotions, sortObj.value.field, sortObj.value.value).slice(start, end)
       } else {
         return this.promotions.slice(start, end)
       }
