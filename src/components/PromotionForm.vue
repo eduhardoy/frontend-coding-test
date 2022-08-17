@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" method="post">
       <label>Elige el producto en promoción</label>
       <multi-select
         v-model="promotion.product"
@@ -58,7 +58,7 @@
             @focus="togglePopover"
             @blur="togglePopover"
           />
-          <div class="error" v-if="!$v.promotion.date_init.required">Se requiere seleccionar una fecha de finalización</div>
+          <div class="error" v-if="!$v.promotion.date_end.required">Se requiere seleccionar una fecha de finalización</div>
         </template>
       </v-date-picker>
       <button type="submit" :disabled="submitStatus === 'PENDING'">Crear promoción</button>
@@ -70,6 +70,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import axios from 'axios'
 import { required, between } from 'vuelidate/lib/validators'
 import moment from 'moment'
 
@@ -85,9 +86,9 @@ export default {
     return {
       submitStatus: null,
       promotion: {
+        product: null,
         date_init: null,
         date_end: null,
-        product: null,
         discount: null,
         rating: 0 // Left rating set to default value for new promotions.
       }
@@ -121,7 +122,6 @@ export default {
   methods: {
     ...mapActions('promotions', ['fetchProducts']),
     submit () {
-      console.log('submit!')
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
@@ -129,6 +129,16 @@ export default {
         // do your submit logic here
         this.submitStatus = 'PENDING'
         setTimeout(() => {
+          axios.post('/promotions', this.promotion)
+            .then((response) => {
+              console.log(response)
+            })
+            .catch((error) => {
+              console.log(error.response.data)
+            }).finally(() => {
+              console.log(this.promotion)
+            })
+          this.promotion = {}
           this.submitStatus = 'OK'
         }, 500)
       }
