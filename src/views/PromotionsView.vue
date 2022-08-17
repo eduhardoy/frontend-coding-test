@@ -45,7 +45,11 @@ export default {
       filterOptions: [
         {
           label: 'Ver todos',
-          value: {}
+          value: {
+            field: 'discount',
+            value: 0,
+            type: '>'
+          }
         },
         {
           label: 'Filtrar por descuento mayor de 4,00€',

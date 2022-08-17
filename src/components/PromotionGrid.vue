@@ -13,7 +13,7 @@
       </div>
       <div class="cards-container">
       <promtion-card
-        v-for="promotion in paginatedPromotions"
+        v-for="promotion in filterAndPaginatePromotions"
         :key="promotion.id"
         :promotion="promotion"
       ></promtion-card>
@@ -57,13 +57,26 @@ export default {
     }
   },
   computed: {
-    numePages () {
-      return Math.ceil(this.promotions.length / PROMO_PER_PAGE)
-    },
-    paginatedPromotions () {
+    filterAndPaginatePromotions () {
       const start = this.page * this.perpage
       const end = start + this.perpage
-      return this.promotions.slice(start, end)
+
+      if (this.filterValue) {
+        const filterObj = JSON.parse(JSON.stringify(this.filterValue))
+        const compare = (field, value, type) => {
+          return type === '<' ? field < value : field > value
+        }
+        const filteredPromotions = this.promotions.filter((promotion) => {
+          const fieldValue = promotion[filterObj.value.field]
+          return compare(fieldValue, filterObj.value.value, filterObj.value.type)
+        })
+        return filteredPromotions.slice(start, end)
+      } else {
+        return this.promotions.slice(start, end)
+      }
+    },
+    numePages () {
+      return Math.ceil(this.promotions.length / PROMO_PER_PAGE)
     }
   }
 }
