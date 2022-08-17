@@ -24,6 +24,7 @@
 
 <script>
 import PromtionCard from '@/components/PromotionCard'
+import _ from 'lodash'
 const PROMO_PER_PAGE = 9
 export default {
   components: { PromtionCard },
@@ -60,7 +61,14 @@ export default {
     filterAndPaginatePromotions () {
       const start = this.page * this.perpage
       const end = start + this.perpage
+      function sortArrays (array, field, value) {
+        return _.orderBy(array, field, value)
+      }
 
+      if (this.sortValue) {
+        const sortObj = JSON.parse(JSON.stringify(this.sortValue))
+        return sortArrays(this.promotions, sortObj.value.field, sortObj.value.value).slice(start, end)
+      }
       if (this.filterValue) {
         const filterObj = JSON.parse(JSON.stringify(this.filterValue))
         const compare = (field, value, type) => {
@@ -71,12 +79,36 @@ export default {
           return compare(fieldValue, filterObj.value.value, filterObj.value.type)
         })
         return filteredPromotions.slice(start, end)
+      }
+      if (this.filterValue && this.sortValue) {
+        const filterObj = JSON.parse(JSON.stringify(this.filterValue))
+        const compare = (field, value, type) => {
+          return type === '<' ? field < value : field > value
+        }
+        const filteredPromotions = this.promotions.filter((promotion) => {
+          const fieldValue = promotion[filterObj.value.field]
+          return compare(fieldValue, filterObj.value.value, filterObj.value.type)
+        })
+        const sortObj = JSON.parse(JSON.stringify(this.sortValue))
+        return sortArrays(filteredPromotions, sortObj.value.field, sortObj.value.value).slice(start, end)
       } else {
         return this.promotions.slice(start, end)
       }
     },
     numePages () {
-      return Math.ceil(this.promotions.length / PROMO_PER_PAGE)
+      if (this.filterValue) {
+        const filterObj = JSON.parse(JSON.stringify(this.filterValue))
+        const compare = (field, value, type) => {
+          return type === '<' ? field < value : field > value
+        }
+        const filteredPromotions = this.promotions.filter((promotion) => {
+          const fieldValue = promotion[filterObj.value.field]
+          return compare(fieldValue, filterObj.value.value, filterObj.value.type)
+        })
+        return Math.ceil(filteredPromotions.length / PROMO_PER_PAGE)
+      } else {
+        return Math.ceil(this.promotions.length / PROMO_PER_PAGE)
+      }
     }
   }
 }
