@@ -65,6 +65,10 @@ export default {
         return _.orderBy(array, field, value)
       }
 
+      if (this.sortValue && !this.filterValue) {
+        const sortObj = JSON.parse(JSON.stringify(this.sortValue))
+        return sortArrays(this.promotions, sortObj.value.field, sortObj.value.value).slice(start, end)
+      }
       if (this.filterValue) {
         const filterObj = JSON.parse(JSON.stringify(this.filterValue))
         const compare = (field, value, type) => {
