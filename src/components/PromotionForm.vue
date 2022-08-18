@@ -60,7 +60,7 @@
             @blur="togglePopover"
           />
           <div class="error" v-if="!$v.promotion.date_end.required">Se requiere seleccionar una fecha de finalización</div>
-          <div class="error" v-if="!$v.promotion.date_end.fifteenDaysFromStart">La fecha de inicio debe ser 15 días mayor</div>
+          <div class="error" v-if="!$v.promotion.date_end.fifteenDaysFromStart">La fecha de finalización debe ser 15 días mayor a la fecha de inicio</div>
         </template>
       </v-date-picker>
       <button type="submit" :disabled="submitStatus === 'PENDING'">Crear promoción</button>
