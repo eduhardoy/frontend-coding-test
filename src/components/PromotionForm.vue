@@ -29,6 +29,7 @@
       >
         <template v-slot="{ inputValue, togglePopover }">
           <input
+            id="date_init"
             class="form-input"
             :value="inputValue"
             placeholder="Ejemplo: 22/05/2022"
@@ -59,6 +60,7 @@
             @blur="togglePopover"
           />
           <div class="error" v-if="!$v.promotion.date_end.required">Se requiere seleccionar una fecha de finalización</div>
+          <div class="error" v-if="!$v.promotion.date_end.fifteenDaysFromStart">La fecha de inicio debe ser 15 días mayor</div>
         </template>
       </v-date-picker>
       <button type="submit" :disabled="submitStatus === 'PENDING'">Crear promoción</button>
@@ -77,6 +79,13 @@ import moment from 'moment'
 const fifteenDaysFromNow = (date) => {
   const day = moment(date, 'YYYY-MM-DD')
   return day.diff(moment([]), 'days') >= 15
+}
+
+const fifteenDaysFromStart = (date) => {
+  const dateInit = document.getElementById('date_init').value
+  const day = moment(dateInit, 'DD/MM/YYYY')
+  const dateEnd = moment(date, 'YYYY-MM-DD')
+  return dateEnd.diff(moment(day), 'days') >= 15
 }
 
 // eslint-disable-next-line eqeqeq
@@ -101,7 +110,8 @@ export default {
         fifteenDaysFromNow
       },
       date_end: {
-        required
+        required,
+        fifteenDaysFromStart
       },
       product: {
         required
@@ -126,7 +136,6 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        // do your submit logic here
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           axios.post('/promotions', this.promotion)
