@@ -129,7 +129,7 @@ export default {
 
 @media only screen and (max-width: 1375px) {
 .cards-container {
-  justify-content: center;
+  justify-content: space-around;
 }
 }
 </style>

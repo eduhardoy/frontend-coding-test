@@ -20,6 +20,11 @@
   padding: 60px 20px 60px 40px;
   margin: 0px auto;
 }
+@media only screen and (max-width: 1375px) {
+.app-column{
+  padding: 60px 0px 60px 20px;
+}
+}
 @media only screen and (max-width: 1200px) {
   .app-column{
     max-width: 100%;
